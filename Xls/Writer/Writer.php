@@ -20,8 +20,8 @@ class Writer extends AbstractWriter {
 
 		$sheet->addTable($table, new Coordinate(1, 1));
 		$workbook->addSheet($sheet);
-
-		$writer = (new WriterFactory())->createWriter(new Excel5($path));
+		$writerFactory = new WriterFactory();
+		$writer = ($writerFactory)->createWriter(new Excel5($path));
 		$phpExcel = $writer->convert($workbook);
 		$writer->write($phpExcel);
 	}
