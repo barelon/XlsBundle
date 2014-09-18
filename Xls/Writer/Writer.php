@@ -55,13 +55,16 @@ class Writer extends AbstractWriter {
             foreach ($row as $columnIndex => $cell) {
                 $maxColumnIndex = max($columnIndex, $maxColumnIndex);
 
+                $style = \PHPExcel_Cell_DataType::TYPE_STRING;
+                if (is_int($cell) || is_float($cell)) $style=\PHPExcel_Cell_DataType::TYPE_NUMERIC;
+
                 $objPHPExcel
                     ->getActiveSheet()
                     ->setCellValueExplicitByColumnAndRow(
                         $columnIndex,
                         $rowIndex + 1,
                         $cell,
-                        \PHPExcel_Cell_DataType::TYPE_STRING
+                        $style
                     )
                 ;
             }
