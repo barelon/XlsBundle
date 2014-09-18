@@ -10,8 +10,8 @@ class Reader {
 	 * @param string $path
 	 * @return array
 	 */
-	public function readAll($path) {
-		return $this->getExcel($path)->toArray();
+	public function readAll($path,$sheet='') {
+		return $this->getExcel($path,$sheet)->toArray();
 	}
 
 	/**
@@ -34,9 +34,10 @@ class Reader {
 	 * @param string $path
 	 * @return \PHPExcel_Worksheet
 	 */
-	protected function getExcel($path) {
+	protected function getExcel($path,$sheet='') {
 		$reader = \PHPExcel_IOFactory::createReaderForFile($path);
-		/** @var \PHPExcel $excel */
+        if ($sheet) $reader->setLoadSheetsOnly(array($sheet));
+        /** @var \PHPExcel $excel */
 		$excel = $reader->load($path);
 		return $excel->getActiveSheet();
 	}
