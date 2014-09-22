@@ -11,7 +11,7 @@ use ExcelAnt\Table\Table;
 class Writer extends AbstractWriter {
 
 	/** {@inheritdoc} */
-	public function create($path, array $firstRow) {
+	public function create($path, array $firstRow, $sheetName='') {
         $workbook = new Workbook();
 		$sheet = new Sheet($workbook);
 		$table = new Table();
@@ -46,9 +46,13 @@ class Writer extends AbstractWriter {
      * @param string $path
      * @param array $rows
      */
-    public function createAndWrite($path, array $rows) {
+    public function createAndWrite($path, array $rows, $sheetName='') {
         $objPHPExcel = new \PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
+        if ($sheetName) {
+            $objPHPExcel->getActiveSheet()
+                ->setTitle($sheetName);
+        }
         $maxColumnIndex = 0;
 
         foreach ($rows as $rowIndex => $row) {

@@ -25,5 +25,5 @@ interface WriterInterface {
      * @param string $path
      * @param array $row
      */
-    public function createAndWrite($path, array $row);
+    public function createAndWrite($path, array $row, $sheetName='');
 }
