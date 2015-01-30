@@ -46,8 +46,8 @@ class BufferedWriter extends AbstractWriter {
 	}
 
     /** {@inheritdoc} */
-    public function createAndWrite($path, array $rows) {
-        $this->writer->createAndWrite($path, $rows);
+    public function createAndWrite($path, array $rows, $sheetName='') {
+        $this->writer->createAndWrite($path, $rows, $sheetName);
     }
 
     /** @param string $path */
