@@ -18,16 +18,16 @@ class Reader {
 	 * @param string $path
 	 * @return \Iterator
 	 */
-	public function getReadIterator($path) {
-		return new StringifyIterator(new NestingDiscloseIterator($this->getExcel($path)->getRowIterator()));
+	public function getReadIterator($path,$sheet='') {
+		return new StringifyIterator(new NestingDiscloseIterator($this->getExcel($path, $sheet)->getRowIterator()));
 	}
 
 	/**
 	 * @param string $path
 	 * @return \Iterator
 	 */
-	public function getItemsCount($path) {
-		return $this->getExcel($path)->getHighestRow();
+	public function getItemsCount($path,$sheet='') {
+		return $this->getExcel($path, $sheet)->getHighestRow();
 	}
 
 	/**
